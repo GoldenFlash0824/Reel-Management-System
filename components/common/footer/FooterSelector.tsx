@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 
-const FooterElement = ({ icon, content, handleClick }: { icon: React.ReactNode, content: string, handleClick: () => void }) => {
+const FooterSelector = ({ icon, content, handleClick }: { icon: React.ReactNode, content: string, handleClick: () => void }) => {
   const [fontsLoaded] = useFonts({
     Genos: require('@/assets/fonts/Genos-SemiBold.ttf'),
   });
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FooterElement;
+export default FooterSelector;
