@@ -8,45 +8,14 @@ import ArrowBackIcon from '@/assets/images/SVG/Stories_section/back-.svg';
 import ViewIcon from '@/assets/images/SVG/Stories_section/view.svg';
 import BackIcon from '@/assets/images/SVG/Stories_section/left_arrow.svg';
 import ForwardIcon from '@/assets/images/SVG/Stories_section/right_arrow.svg';
-import FooterElement from '@/components/common/footer/FooterElement';
 import MediaIcon from '@/assets/images/SVG/Stories_section/Media.svg';
-import MusicIcon from '@/assets/images/SVG/Stories_section/Music.svg';
-import TextIcon from '@/assets/images/SVG/Stories_section/Text.svg';
-import EffectIcon from '@/assets/images/SVG/Stories_section/Effects.svg';
-import StickerIcon from '@/assets/images/SVG/Stories_section/Sticker.svg';
-import BackSideIcon from '@/assets/images/SVG/Stories_section/backside.svg';
-
-const footers = [
-  {
-    icon: <MediaIcon />,
-    content: 'Media'
-  },
-  {
-    icon: <MusicIcon />,
-    content: 'Music'
-  },
-  {
-    icon: <TextIcon />,
-    content: 'Text'
-  },
-  {
-    icon: <EffectIcon />,
-    content: 'Effect'
-  },
-  {
-    icon: <StickerIcon />,
-    content: 'Sticker'
-  },
-  {
-    icon: <BackSideIcon />,
-    content: 'Backside'
-  },
-];
+import MediaStatusIcon from '@/assets/images/SVG/Stories_section/Media_status.svg';
+import { useState } from 'react';
 
 const Edit = () => {
-  const handleClick = () => {
-
-  }
+  const [content, setContent] = useState<string>('Media');
+  const [icon, setIcon] = useState<React.ReactNode>(<MediaIcon />)
+  const [statusIcon, setStatusIcon] = useState<React.ReactNode>(<MediaStatusIcon />)
 
   return (
     <GestureHandlerRootView style={styles.root}>
@@ -69,10 +38,7 @@ const Edit = () => {
                 <ViewIcon />
               </TouchableOpacity>
             </Header>
-            <Footer>
-              {footers?.map((footer, index) => (
-                <FooterElement key={index} icon={footer?.icon} content={footer?.content} handleClick={handleClick} />
-              ))}
+            <Footer content={content} setContent={setContent} icon={icon} setIcon={setIcon} statusIcon={statusIcon} setStatusIcon={setStatusIcon}>
             </Footer>
           </ImageBackground>
         </ImageBackground>
@@ -96,7 +62,7 @@ const styles = StyleSheet.create({
   btnGroup: {
     flexDirection: 'row',
     gap: 50
-  }
+  },
 })
 
 export default Edit;
