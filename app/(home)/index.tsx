@@ -16,7 +16,7 @@ export default function Index() {
   const [fontsLoaded] = useFonts({
     Genos: require('@/assets/fonts/Genos-SemiBold.ttf'),
   });
-  const [pressed, setPressed] = useState(false);
+  const [pressed, setPressed] = useState(-1);
 
   useEffect(() => {
     async function prepare() {
@@ -37,55 +37,90 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={require('@/assets/images/home_bg.png')} style={styles.image}>
+      <ImageBackground source={require('@/assets/images/PNG/home_bg.png')} style={styles.image}>
         <View style={styles.overlay}>
           <View style={styles.header}>
             <View style={styles.status}>
-              <Image source={require('@/assets/images/avatar.png')} style={styles.avatar} />
+              <TouchableOpacity onPress={() => { router.push("/(filter)") }}>
+                <Image source={require('@/assets/images/PNG/avatar.png')} style={styles.avatar} />
+              </TouchableOpacity>
               <View style={styles.statusText}>
                 <Text style={styles.text}>Hallo !!</Text>
                 <Text style={styles.text}>Username</Text>
               </View>
             </View>
             <View style={styles.settings}>
-              <Image source={require('@/assets/images/gear.png')} style={styles.avatar} />
-              {/* <GearIcon width={25} height={25} fill="white" /> */}
+              <Image source={require('@/assets/images/PNG/gear.png')} />
             </View>
           </View>
           <View>
             <Text style={styles.readyText}>Ready to Create?</Text>
             <View style={{ width: '100%', marginTop: 15, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-              <View style={{ flexDirection: 'column', backgroundColor: 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <StoryIcon width={60} height={60} fill="white" />
-                </View>
-                <Text style={{ fontSize: 12, fontFamily: 'Genos', color: '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's create</Text>
-                <Text style={{ fontSize: 15, fontFamily: 'Genos', color: '#1C274C' }}>Create Stories</Text>
-                <Text style={{ fontSize: 10, fontFamily: 'Genos', color: '#1C274C', paddingTop: 5 }}>Share your moments</Text>
-              </View>
-              <View style={{ flexDirection: 'column', backgroundColor: 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <ReelIcon width={60} height={60} fill="white" />
-                </View>
-                <Text style={{ fontSize: 12, fontFamily: 'Genos', color: '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's Make</Text>
-                <Text style={{ fontSize: 15, fontFamily: 'Genos', color: '#1C274C' }}>Create Reels</Text>
-                <Text style={{ fontSize: 10, fontFamily: 'Genos', color: '#1C274C', paddingTop: 5 }}>Capture short videos</Text>
-              </View>
               <TouchableOpacity
-                onPressIn={() => { setPressed(true) }}
-                onPressOut={() => { setPressed(false) }}
+                onPressIn={() => { setPressed(0) }}
+                onPressOut={() => { setPressed(-1) }}
                 onPress={() => {
-                  setPressed(true);
-                  router.push("/(gallery)")
-                }}
-                style={{ flexDirection: 'column', backgroundColor: pressed ? '#37CC8A' : 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}
-              >
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  {pressed ? <WhiteAdsIcon width={60} height={60} fill="white" /> : <AdsIcon width={60} height={60} fill="white" />}
+                  setPressed(0);
+                  router.push({
+                    pathname: "/(cards)",
+                    params: {
+                      status: 0
+                    }
+                  })
+                  setPressed(-1)
+                }}>
+                <View style={{ flexDirection: 'column', backgroundColor: pressed === 0 ? '#1BC469' : 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <StoryIcon width={60} height={60} fill="white" />
+                  </View>
+                  <Text style={{ fontSize: 12, fontFamily: 'Genos', color: pressed === 0 ? 'white' : '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's create</Text>
+                  <Text style={{ fontSize: 15, fontFamily: 'Genos', color: pressed === 0 ? 'white' : '#1C274C' }}>Create Stories</Text>
+                  <Text style={{ fontSize: 10, fontFamily: 'Genos', color: pressed === 0 ? 'white' : '#1C274C', paddingTop: 5 }}>Share your moments</Text>
                 </View>
-                <Text style={{ fontSize: 12, fontFamily: 'Genos', color: pressed ? 'white' : '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's Promote</Text>
-                <Text style={{ fontSize: 15, fontFamily: 'Genos', color: pressed ? 'white' : '#1C274C', }}>Create Ads</Text>
-                <Text style={{ fontSize: 10, fontFamily: 'Genos', color: pressed ? 'white' : '#1C274C', paddingTop: 5 }}>Reach your audience</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPressIn={() => { setPressed(1) }}
+                onPressOut={() => { setPressed(-1) }}
+                onPress={() => {
+                  setPressed(1);
+                  router.push({
+                    pathname: "/(cards)",
+                    params: {
+                      status: 1
+                    }
+                  })
+                  setPressed(-1)
+                }}>
+                <View style={{ flexDirection: 'column', backgroundColor: pressed === 1 ? '#1BC469' : 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <ReelIcon width={60} height={60} fill="white" />
+                  </View>
+                  <Text style={{ fontSize: 12, fontFamily: 'Genos', color: pressed === 1 ? 'white' : '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's Make</Text>
+                  <Text style={{ fontSize: 15, fontFamily: 'Genos', color: pressed === 1 ? 'white' : '#1C274C' }}>Create Reels</Text>
+                  <Text style={{ fontSize: 10, fontFamily: 'Genos', color: pressed === 1 ? 'white' : '#1C274C', paddingTop: 5 }}>Capture short videos</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPressIn={() => { setPressed(2) }}
+                onPressOut={() => { setPressed(-1) }}
+                onPress={() => {
+                  setPressed(2);
+                  router.push({
+                    pathname: "/(cards)",
+                    params: {
+                      status: 2
+                    }
+                  })
+                  setPressed(-1);
+                }}>
+                <View style={{ flexDirection: 'column', backgroundColor: pressed === 2 ? '#1BC469' : 'white', borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8 }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    {pressed === 2 ? <WhiteAdsIcon width={60} height={60} fill="white" /> : <AdsIcon width={60} height={60} fill="white" />}
+                  </View>
+                  <Text style={{ fontSize: 12, fontFamily: 'Genos', color: pressed === 2 ? 'white' : '#1C274C', paddingTop: 12, paddingBottom: 6 }}>Let's Promote</Text>
+                  <Text style={{ fontSize: 15, fontFamily: 'Genos', color: pressed === 2 ? 'white' : '#1C274C', }}>Create Ads</Text>
+                  <Text style={{ fontSize: 10, fontFamily: 'Genos', color: pressed === 2 ? 'white' : '#1C274C', paddingTop: 5 }}>Reach your audience</Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -154,8 +189,8 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   avatar: {
-    width: 20,
-    height: 20,
+    width: 40,
+    height: 40,
   },
   statusText: {
     flexDirection: 'column',
