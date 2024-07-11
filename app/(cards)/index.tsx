@@ -1,16 +1,56 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useLocalSearchParams } from 'expo-router';
+
+import Element from '@/components/(cards)/element';
 import GalleryIcon from '@/assets/images/gallery_ico.svg';
 import ArrowRightIcon from '@/assets/images/arrow_right.svg';
-import FlameIcon from '@/assets/images/flame.svg';
 
 export default function Index() {
+  const { status } = useLocalSearchParams<{
+    status: string;
+  }>();
+
   return (
     <GestureHandlerRootView style={styles.root}>
       <View style={styles.container}>
         <ScrollView>
+          <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <GalleryIcon />
+                <Text>Create Stories</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <Text>See All</Text>
+                <ArrowRightIcon />
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
+              {Array(3).fill(0).map((_, index) => (
+                <Element key={index} status={status || ''} />
+              ))}
+            </View>
+          </View>
+          <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <GalleryIcon />
+                <Text>Create Reels</Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <Text>See All</Text>
+                <ArrowRightIcon />
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
+              {Array(3).fill(0).map((_, index) => (
+                <Element key={index} status={status || ''} />
+              ))}
+            </View>
+          </View>
           <View style={{ flexDirection: 'column' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -24,10 +64,7 @@ export default function Index() {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               {Array(3).fill(0).map((_, index) => (
-                <View key={index} style={styles.card}>
-                  <Image source={require('@/assets/images/gallery_card.png')} style={styles.image} />
-                  <FlameIcon style={styles.icon} />
-                </View>
+                <Element key={index} status={status || ''} />
               ))}
             </View>
           </View>
@@ -44,10 +81,7 @@ export default function Index() {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               {Array(3).fill(0).map((_, index) => (
-                <View key={index} style={styles.card}>
-                  <Image source={require('@/assets/images/gallery_card.png')} style={styles.image} />
-                  <FlameIcon style={styles.icon} />
-                </View>
+                <Element key={index} status={status || ''} />
               ))}
             </View>
           </View>
@@ -64,10 +98,7 @@ export default function Index() {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               {Array(3).fill(0).map((_, index) => (
-                <View key={index} style={styles.card}>
-                  <Image source={require('@/assets/images/gallery_card.png')} style={styles.image} />
-                  <FlameIcon style={styles.icon} />
-                </View>
+                <Element key={index} status={status || ''} />
               ))}
             </View>
           </View>
@@ -84,10 +115,7 @@ export default function Index() {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               {Array(3).fill(0).map((_, index) => (
-                <View key={index} style={styles.card}>
-                  <Image source={require('@/assets/images/gallery_card.png')} style={styles.image} />
-                  <FlameIcon style={styles.icon} />
-                </View>
+                <Element key={index} status={status || ''} />
               ))}
             </View>
           </View>
@@ -104,10 +132,7 @@ export default function Index() {
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 15 }}>
               {Array(3).fill(0).map((_, index) => (
-                <View key={index} style={styles.card}>
-                  <Image source={require('@/assets/images/gallery_card.png')} style={styles.image} />
-                  <FlameIcon style={styles.icon} />
-                </View>
+                <Element key={index} status={status || ''} />
               ))}
             </View>
           </View>
@@ -126,21 +151,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 15,
     paddingVertical: 30,
-  },
-  card: {
-    width: 140,
-    height: 200,
-    borderRadius: 8,
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  icon: {
-    position: 'absolute',
-    bottom: 3,
-    left: 5,
   },
 });
