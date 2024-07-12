@@ -1,9 +1,9 @@
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import FooterHeader from '@/components/common/footer/FooterHeader';
-import FooterBody from "@/components/common/footer/FooterBody";
-import FooterSelector from '@/components/common/footer/FooterSelector';
+import FooterHeader from '@/components/common/EffectFooter/FooterHeader';
+import FooterBody from "@/components/common/EffectFooter/FooterBody";
+import FooterSelector from '@/components/common/EffectFooter/FooterSelector';
 import MediaIcon from '@/assets/images/SVG/Stories_section/Media.svg';
 import MusicIcon from '@/assets/images/SVG/Stories_section/Music.svg';
 import TextIcon from '@/assets/images/SVG/Stories_section/Text.svg';
@@ -16,7 +16,7 @@ import TextStatusIcon from '@/assets/images/SVG/Stories_section/Text_status.svg'
 import EffectStatusIcon from '@/assets/images/SVG/Stories_section/Effects_status.svg';
 import StickerStatusIcon from '@/assets/images/SVG/Stories_section/Sticker_status.svg';
 import BackSideStatusIcon from '@/assets/images/SVG/Stories_section/backside_status.svg';
-
+import { useContent } from "@/app/(cards)/_layout";
 
 const footers = [
   {
@@ -61,10 +61,18 @@ const Footer = ({ content, setContent, icon, setIcon, statusIcon, setStatusIcon 
     setStatusIcon: React.Dispatch<SetStateAction<React.ReactNode>>
   }) => {
 
+  const { selectedSelector, setSelectedSelector, setSelectedTextSelector, setFooter, setTextContent } = useContent();
+
   const handleClick = (footer: { icon: React.ReactNode, statusIcon: React.ReactNode, content: string }) => {
     setIcon(footer?.icon);
     setStatusIcon(footer?.statusIcon);
     setContent(footer?.content);
+    setSelectedSelector(footer?.content);
+    if (footer?.content === 'Text') {
+      setFooter('text');
+      setTextContent('Font');
+      setSelectedTextSelector('Font');
+    }
   }
 
   return (
@@ -74,7 +82,7 @@ const Footer = ({ content, setContent, icon, setIcon, statusIcon, setStatusIcon 
       <View style={styles.scrollParent}>
         <ScrollView horizontal contentContainerStyle={styles.scrollViewContent}>
           {footers?.map((footer, index) => (
-            <FooterSelector key={index} icon={footer?.icon} content={footer?.content} handleClick={() => { handleClick(footer) }} />
+            <FooterSelector key={index} icon={footer?.icon} content={footer?.content} selectedSelector={selectedSelector} handleClick={() => { handleClick(footer) }} />
           ))}
         </ScrollView>
       </View>

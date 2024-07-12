@@ -3,7 +3,13 @@ import { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 
-const FooterSelector = ({ icon, content, handleClick }: { icon: React.ReactNode, content: string, handleClick: () => void }) => {
+const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
+  {
+    icon: React.ReactNode,
+    selectedSelector: string,
+    content: string,
+    handleClick: () => void
+  }) => {
   const [fontsLoaded] = useFonts({
     Genos: require('@/assets/fonts/Genos-SemiBold.ttf'),
   });
@@ -27,9 +33,9 @@ const FooterSelector = ({ icon, content, handleClick }: { icon: React.ReactNode,
 
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View style={styles.container}>
+      <View style={[styles.container, selectedSelector === content && styles.selectedElement]}>
         {icon}
-        <Text style={styles.content}>{content}</Text>
+        <Text style={[styles.content]}>{content}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -44,6 +50,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  selectedElement: {
+    backgroundColor: '#1BC469'
   },
   content: {
     fontFamily: 'Genos',

@@ -1,8 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import DotIcon from '@/assets/images/SVG/dot.svg'
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { router } from "expo-router";
 
-const FooterHeader = ({ statusIcon, content }: { statusIcon: React.ReactNode, content: string }) => {
+const FooterHeader = ({ statusIcon, content }:
+  {
+    statusIcon: React.ReactNode,
+    content: string
+  }) => {
 
   return (
     <View style={styles.container}>
@@ -16,7 +21,9 @@ const FooterHeader = ({ statusIcon, content }: { statusIcon: React.ReactNode, co
           <Text style={{ fontFamily: 'Genos', fontSize: 20, color: '#333333', marginLeft: 15 }}>{content}</Text>
           <DotIcon style={{ marginLeft: 15 }} />
         </View>
-        {content !== 'Media' && <TouchableOpacity>
+        {content !== 'Media' && <TouchableOpacity onPress={() => {
+          router.push("/preview")
+        }}>
           <View style={styles.button}>
             <Text style={{ fontFamily: 'Genos', fontSize: 20, }}>Done</Text>
           </View>
