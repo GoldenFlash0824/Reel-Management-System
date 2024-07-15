@@ -1,5 +1,5 @@
-import { SetStateAction, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { SetStateAction } from "react";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 
 import FooterHeader from '@/components/common/EffectFooter/FooterHeader';
 import FooterBody from "@/components/common/EffectFooter/FooterBody";
@@ -18,35 +18,37 @@ import StickerStatusIcon from '@/assets/images/SVG/Stories_section/Sticker_statu
 import BackSideStatusIcon from '@/assets/images/SVG/Stories_section/backside_status.svg';
 import { useContent } from "@/app/(cards)/_layout";
 
+const { width, height } = Dimensions.get('window');
+
 const footers = [
   {
-    icon: <MediaIcon />,
-    statusIcon: <MediaStatusIcon />,
+    icon: <MediaIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <MediaStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Media'
   },
   {
-    icon: <MusicIcon />,
-    statusIcon: <MusicStatusIcon />,
+    icon: <MusicIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <MusicStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Music'
   },
   {
-    icon: <TextIcon />,
-    statusIcon: <TextStatusIcon />,
+    icon: <TextIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <TextStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Text'
   },
   {
-    icon: <EffectIcon />,
-    statusIcon: <EffectStatusIcon />,
+    icon: <EffectIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <EffectStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Effect'
   },
   {
-    icon: <StickerIcon />,
-    statusIcon: <StickerStatusIcon />,
+    icon: <StickerIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <StickerStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Sticker'
   },
   {
-    icon: <BackSideIcon />,
-    statusIcon: <BackSideStatusIcon />,
+    icon: <BackSideIcon width={width * 0.07} height={width * 0.07} />,
+    statusIcon: <BackSideStatusIcon width={width * 0.05} height={width * 0.05} />,
     content: 'Backside'
   },
 ];
@@ -76,13 +78,13 @@ const Footer = ({ content, setContent, icon, setIcon, statusIcon, setStatusIcon 
   }
 
   return (
-    <View style={styles.container}>
-      <FooterHeader content={content} statusIcon={statusIcon} />
+    <View style={[styles.container, content === '' ? styles.containerEmpty : styles.containerNotEmpty]}>
+      {content !== '' && <FooterHeader content={content} statusIcon={statusIcon} />}
       <FooterBody content={content} />
       <View style={styles.scrollParent}>
         <ScrollView horizontal contentContainerStyle={styles.scrollViewContent}>
           {footers?.map((footer, index) => (
-            <FooterSelector key={index} icon={footer?.icon} content={footer?.content} selectedSelector={selectedSelector} handleClick={() => { handleClick(footer) }} />
+            <FooterSelector key={index} icon={footer?.icon} itemContent={footer?.content} selectedSelector={selectedSelector} handleClick={() => { handleClick(footer) }} />
           ))}
         </ScrollView>
       </View>
@@ -93,15 +95,23 @@ const Footer = ({ content, setContent, icon, setIcon, statusIcon, setStatusIcon 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
     backgroundColor: '#F0F0F0',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingBottom: height * 0.02
+  },
+  containerEmpty: {
+    backgroundColor: '#000000',
+    paddingTop: height * 0.02
+  },
+  containerNotEmpty: {
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'column'
   },
   scrollParent: {
     width: '100%',
-    height: 130,
   },
   scrollViewContent: {
     flexDirection: 'row',

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, TouchableOpacity, View } from "react-native";
+import { StyleSheet, ScrollView, TouchableOpacity, View, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
 
 const EffectBody = () => {
   const [selected, setSelected] = useState<number | null>(null);
@@ -33,25 +35,29 @@ const EffectBody = () => {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    padding: 15,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: width * 0.04,
   },
   elementArea: {
-    maxHeight: 350,
+    maxHeight: height * 0.4,
   },
   scrollViewContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 15,
+    gap: width * 0.03,
   },
   element: {
-    width: 100,
-    height: 100,
-    borderRadius: 20,
+    width: width * 0.2,
+    height: width * 0.2,
+    borderRadius: width * 0.05,
     backgroundColor: '#cccccc',
   },
   selectedElement: {
-    borderWidth: 2,
+    borderWidth: width * 0.005,
     borderColor: '#1BC469',
   },
 });

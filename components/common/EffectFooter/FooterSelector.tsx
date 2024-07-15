@@ -1,15 +1,19 @@
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useContent } from "@/app/(cards)/_layout";
 
-const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
+const { width } = Dimensions.get('window');
+
+const FooterSelector = ({ icon, selectedSelector, itemContent, handleClick }:
   {
     icon: React.ReactNode,
     selectedSelector: string,
-    content: string,
+    itemContent: string,
     handleClick: () => void
   }) => {
+  const { content } = useContent();
   const [fontsLoaded] = useFonts({
     Genos: require('@/assets/fonts/Genos-SemiBold.ttf'),
   });
@@ -31,11 +35,12 @@ const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
     return null;
   }
 
+
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View style={[styles.container, selectedSelector === content && styles.selectedElement]}>
+      <View style={[styles.container, content === '' ? styles.contentEmpty : styles.contentNotEmpty, selectedSelector === itemContent && styles.selectedElement]}>
         {icon}
-        <Text style={[styles.content]}>{content}</Text>
+        <Text style={styles.content}>{itemContent}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -43,22 +48,28 @@ const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
 
 const styles = StyleSheet.create({
   container: {
-    width: 80,
-    height: 70,
+    width: width * 0.18,
+    height: width * 0.2,
     borderRadius: 10,
-    backgroundColor: '#c0c0c0',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  contentEmpty: {
+    backgroundColor: '#565656'
+  },
+  contentNotEmpty: {
+    backgroundColor: '#c0c0c0',
   },
   selectedElement: {
     backgroundColor: '#1BC469'
   },
   content: {
     fontFamily: 'Genos',
-    fontSize: 17,
+    fontSize: width * 0.04,
     color: 'white',
-    marginTop: 8
+    marginTop: width * 0.02,
+    textAlign: 'center',
   }
 })
 

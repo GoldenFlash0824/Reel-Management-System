@@ -1,7 +1,9 @@
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
+
+const { width } = Dimensions.get('window');
 
 const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
   {
@@ -43,8 +45,8 @@ const FooterSelector = ({ icon, selectedSelector, content, handleClick }:
 
 const styles = StyleSheet.create({
   container: {
-    width: 80,
-    height: 70,
+    width: width * 0.18,
+    height: width * 0.2,
     borderRadius: 10,
     backgroundColor: '#c0c0c0',
     display: 'flex',
@@ -56,9 +58,10 @@ const styles = StyleSheet.create({
   },
   content: {
     fontFamily: 'Genos',
-    fontSize: 17,
+    fontSize: width * 0.04,
     color: 'white',
-    marginTop: 8
+    marginTop: width * 0.02,
+    textAlign: 'center',
   }
 })
 

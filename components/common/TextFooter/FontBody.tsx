@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { View, StyleSheet, ScrollView, TouchableOpacity, Text } from "react-native";
+import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Text, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get('window');
 
 const FontBody = () => {
   const [selected, setSelected] = useState<number | null>(null);
+
   const handlePress = (index: number) => {
     setSelected(index);
   }
@@ -13,7 +16,7 @@ const FontBody = () => {
       elements.push(
         <TouchableOpacity key={i} onPress={() => { handlePress(i) }}>
           <View style={[styles.element, selected === i && styles.selectedElement]}>
-            <Text style={{ fontFamily: 'Genos', fontSize: 18, color: 'white' }}>Fonts</Text>
+            <Text style={styles.elementText}>Fonts</Text>
           </View>
         </TouchableOpacity>
       )
@@ -35,29 +38,36 @@ const FontBody = () => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    padding: 15,
+    padding: width * 0.04,
   },
   elementArea: {
-    maxHeight: 200,
+    maxHeight: height * 0.25,
   },
   scrollViewContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 15,
+    gap: width * 0.03,
   },
   element: {
-    width: 100,
-    height: 40,
-    borderRadius: 10,
+    width: width * 0.2,
+    height: height * 0.05,
+    borderRadius: width * 0.02,
     backgroundColor: '#cccccc',
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   selectedElement: {
     borderWidth: 2,
     borderColor: '#1BC469',
-  }
-})
+  },
+  elementText: {
+    fontFamily: 'Genos',
+    fontSize: width * 0.045,
+    color: 'white',
+  },
+});
 
 export default FontBody;

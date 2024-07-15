@@ -1,9 +1,12 @@
-import { View, StyleSheet } from "react-native";
-import { useState } from "react";
+import React, { useState } from 'react';
+import { View, StyleSheet, Dimensions } from "react-native";
 import Slider from '@react-native-community/slider';
+
+const { width, height } = Dimensions.get('window');
 
 const SpaceBody = () => {
   const [sliderValue, setSliderValue] = useState<number>(0);
+
   return (
     <View style={styles.container}>
       <View style={styles.elementArea}>
@@ -25,22 +28,23 @@ const SpaceBody = () => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    paddingHorizontal: 50,
-    paddingVertical: 20,
+    paddingHorizontal: width * 0.1,
+    paddingVertical: height * 0.025,
   },
   elementArea: {
     backgroundColor: '#cccccc',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: width * 0.025,
+    paddingVertical: height * 0.0125,
     borderRadius: 8
   },
   slider: {
     width: '100%',
-    height: 40,
+    height: height * 0.05,
   },
   sliderValue: {
-    marginTop: 10,
-    fontSize: 16,
+    marginTop: height * 0.0125,
+    fontSize: width * 0.04,
   }
 })
+
 export default SpaceBody;

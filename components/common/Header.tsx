@@ -1,12 +1,12 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Platform, StatusBar } from "react-native";
 
-const Header = ({ children }: { children: React.ReactNode }) => {
+const Header = ({ children, style }: { children: React.ReactNode, style?: object }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {children}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -17,8 +17,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    backgroundColor: 'black'
-  }
-})
+    backgroundColor: 'black',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+});
 
 export default Header;

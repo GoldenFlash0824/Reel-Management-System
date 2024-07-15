@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, View, ScrollView, StyleSheet } from 'react-native';
 import { SetStateAction, useState } from 'react';
 
 import { useContent } from '@/app/(cards)/_layout';
@@ -14,33 +14,35 @@ import ColorIcon from '@/assets/images/SVG/Ads_section/Color.svg';
 import FontBody from './FontBody';
 import FooterBody from './FooterBody';
 
+const { width, height } = Dimensions.get('window');
+
 const footers = [
   {
-    icon: <BackIcon />,
+    icon: <BackIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Back'
   },
   {
-    icon: <FontIcon />,
+    icon: <FontIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Font'
   },
   {
-    icon: <HighIcon />,
+    icon: <HighIcon width={width * 0.07} height={width * 0.07} />,
     content: 'High'
   },
   {
-    icon: <SpaceIcon />,
+    icon: <SpaceIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Space'
   },
   {
-    icon: <LiningIcon />,
+    icon: <LiningIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Lining'
   },
   {
-    icon: <SizeIcon />,
+    icon: <SizeIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Size'
   },
   {
-    icon: <ColorIcon />,
+    icon: <ColorIcon width={width * 0.07} height={width * 0.07} />,
     content: 'Color'
   },
 ];
@@ -79,15 +81,17 @@ const Footer = ({ content, setContent }: {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
     backgroundColor: '#F0F0F0',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingBottom: height * 0.02
   },
   scrollParent: {
     width: '100%',
-    height: 130,
   },
   scrollViewContent: {
     flexDirection: 'row',
