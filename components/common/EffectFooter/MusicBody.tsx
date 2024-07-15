@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
@@ -9,6 +9,8 @@ import PlayingIcon from '@/assets/images/SVG/Stories_section/Playing.svg';
 import PlayIcon from '@/assets/images/SVG/Stories_section/Play.svg';
 import CheckedIcon from '@/assets/images/SVG/Stories_section/Checked.svg';
 import UnCheckedIcon from '@/assets/images/SVG/Stories_section/Unchecked.svg';
+
+const { width, height } = Dimensions.get('window');
 
 const categories = ['Songs', 'Songs', 'Songs', 'Songs'];
 const musicElements = [
@@ -48,7 +50,7 @@ const MusicBody = () => {
     return categories.map((category, index) => (
       <TouchableOpacity key={index} onPress={() => handleCategoryPress(index)}>
         <View style={index === selectedCategoryIndex ? styles.pressedButton : styles.button}>
-          <MusicCategoryIcon />
+          <MusicCategoryIcon width={width * 0.06} height={width * 0.06} />
           <Text style={styles.buttonText}>{category}</Text>
         </View>
       </TouchableOpacity>
@@ -57,20 +59,20 @@ const MusicBody = () => {
 
   const renderMusicElements = () => {
     return musicElements.map((element, index) => (
-      <TouchableOpacity key={index} onPress={() => { handleMusicItemPress(index) }}>
+      <TouchableOpacity key={index} onPress={() => handleMusicItemPress(index)}>
         <View style={styles.element}>
           <View style={styles.elementContent}>
-            <MusicElementLogo width={65} height={65} />
+            <MusicElementLogo width={width * 0.15} height={width * 0.15} />
             <View style={styles.author}>
               <Text style={styles.authorName}>{element.author}</Text>
               <Text style={styles.authorTitle}>{element.title}</Text>
             </View>
           </View>
           <View style={styles.iconContainer}>
-            {index === selectedMusicItemIndex ? <PlayingIcon width={30} height={30} /> : <PlayIcon width={30} height={30} />}
+            {index === selectedMusicItemIndex ? <PlayingIcon width={width * 0.08} height={width * 0.08} /> : <PlayIcon width={width * 0.08} height={width * 0.08} />}
           </View>
           <View style={styles.iconContainer}>
-            {index === selectedMusicItemIndex ? <CheckedIcon width={30} height={30} /> : <UnCheckedIcon width={30} height={30} />}
+            {index === selectedMusicItemIndex ? <CheckedIcon width={width * 0.08} height={width * 0.08} /> : <UnCheckedIcon width={width * 0.08} height={width * 0.08} />}
           </View>
         </View>
       </TouchableOpacity>
@@ -98,48 +100,49 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingHorizontal: 15,
+    paddingHorizontal: width * 0.04,
+    paddingBottom: width * 0.01
   },
   selector: {
     flexDirection: 'row',
-    paddingTop: 20,
+    paddingTop: height * 0.02,
   },
   pressedButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: width * 0.02,
     backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 5,
+    paddingHorizontal: width * 0.03,
+    paddingVertical: height * 0.01,
+    borderRadius: width * 0.02,
   },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: width * 0.02,
     backgroundColor: '#E5E5E5',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 5,
+    paddingHorizontal: width * 0.03,
+    paddingVertical: height * 0.01,
+    borderRadius: width * 0.02,
   },
   buttonText: {
-    fontFamily: 'Genos',
-    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontSize: width * 0.04,
   },
   elementArea: {
-    minHeight: 300,
-    height: 300,
-    marginTop: 20,
+    minHeight: height * 0.4,
+    height: height * 0.4,
+    marginTop: height * 0.02,
     flexDirection: 'column',
   },
   scrollViewContent: {
-    gap: 10,
+    gap: width * 0.02,
   },
   element: {
     flexDirection: 'row',
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 15,
+    paddingHorizontal: width * 0.04,
+    paddingVertical: height * 0.02,
+    borderRadius: width * 0.04,
     backgroundColor: 'rgba(0, 0, 0, 0.06)',
     borderColor: 'rgba(0, 0, 0, 0.06)',
     borderWidth: 2,
@@ -151,13 +154,15 @@ const styles = StyleSheet.create({
   author: {
     flexDirection: 'column',
     justifyContent: 'center',
-    marginLeft: 15,
+    marginLeft: width * 0.04,
   },
   authorName: {
     fontFamily: 'Poppins',
+    fontSize: width * 0.04,
   },
   authorTitle: {
     fontFamily: 'Poppins',
+    fontSize: width * 0.035,
     color: '#64748B',
   },
   iconContainer: {

@@ -2,7 +2,7 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import FlameIcon from '@/assets/images/flame.svg';
 
-const Element = ({ status }: { status: string }) => {
+const Element = ({ status, style }: { status: string, style?: any }) => {
   return (
     <TouchableOpacity onPress={() => {
       router.push({
@@ -12,7 +12,7 @@ const Element = ({ status }: { status: string }) => {
         }
       })
     }}>
-      <View style={styles.card}>
+      <View style={[styles.card, style]}>
         <Image source={require('@/assets/images/PNG/gallery_card.png')} style={styles.image} />
         <FlameIcon style={styles.icon} />
       </View>
@@ -22,8 +22,6 @@ const Element = ({ status }: { status: string }) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 140,
-    height: 200,
     borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',

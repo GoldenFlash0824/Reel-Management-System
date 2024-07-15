@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, TouchableOpacity, Text, View } from "react-native";
-
+import { StyleSheet, ScrollView, TouchableOpacity, Text, View, Dimensions } from "react-native";
 import StickerSelectorIcon from '@/assets/images/SVG/Stories_section/Sticker_selector.svg';
 
-const BackSideBody = () => {
+const { width, height } = Dimensions.get('window');
+
+const StickerBody = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const [selectedButton, setSelectedButton] = useState<string>('Sticker');
 
@@ -32,7 +33,7 @@ const BackSideBody = () => {
           {buttons.map((button) => (
             <TouchableOpacity key={button} onPress={() => handleButtonPress(button)}>
               <View style={[styles.button, selectedButton === button && styles.pressedButton]}>
-                <StickerSelectorIcon />
+                <StickerSelectorIcon width={width * 0.05} height={width * 0.05} />
                 <Text style={styles.buttonText}>{button}</Text>
               </View>
             </TouchableOpacity>
@@ -40,7 +41,7 @@ const BackSideBody = () => {
         </ScrollView>
       </View>
       <View style={styles.elementArea}>
-        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <ScrollView contentContainerStyle={styles.scrollViewElements}>
           {renderElements()}
         </ScrollView>
       </View>
@@ -48,22 +49,26 @@ const BackSideBody = () => {
   );
 };
 
+const elementSize = width * 0.2;
+const gapSize = width * 0.03;
+
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    padding: 15,
+    flex: 1,
+    padding: width * 0.04,
+    alignItems: 'center',
   },
   selector: {
     flexDirection: 'row',
-    paddingBottom: 20,
+    paddingBottom: height * 0.02,
   },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    marginHorizontal: gapSize / 2,
     backgroundColor: '#E5E5E5',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: width * 0.02,
+    paddingVertical: height * 0.01,
     borderRadius: 5,
   },
   pressedButton: {
@@ -71,26 +76,34 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: 'Genos',
-    fontSize: 18,
+    fontSize: width * 0.04,
+    marginLeft: width * 0.009
   },
   elementArea: {
-    maxHeight: 350,
+    maxHeight: height * 0.35,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollViewContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scrollViewElements: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 15,
+    gap: gapSize,
+    justifyContent: 'center',
   },
   element: {
-    width: 100,
-    height: 100,
-    borderRadius: 20,
+    width: elementSize,
+    height: elementSize,
+    borderRadius: width * 0.05,
     backgroundColor: '#cccccc',
   },
   selectedElement: {
-    borderWidth: 2,
+    borderWidth: width * 0.01,
     borderColor: '#1BC469',
   },
 });
 
-export default BackSideBody;
+export default StickerBody;

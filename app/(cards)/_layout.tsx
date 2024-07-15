@@ -17,8 +17,8 @@ export type RootContextType = {
 export const RootContext = createContext<RootContextType | null>(null);
 
 export default function Layout() {
-  const [content, setContent] = useState<string>('Media');
-  const [selectedSelector, setSelectedSelector] = useState<string>('Media');
+  const [content, setContent] = useState<string>('');
+  const [selectedSelector, setSelectedSelector] = useState<string>('');
   const [textContent, setTextContent] = useState<string>('Font');
   const [selectedTextSelector, setSelectedTextSelector] = useState<string>('Font');
   const [footer, setFooter] = useState<string>('effect');

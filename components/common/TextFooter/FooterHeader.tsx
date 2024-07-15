@@ -1,8 +1,11 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from "react-native";
 
-import DotIcon from '@/assets/images/SVG/dot.svg'
-import BackIcon from '@/assets/images/SVG/Ads_section/Back_Return.svg'
-import ForwardIcon from '@/assets/images/SVG/Ads_section/Forward_Return.svg'
+import DotIcon from '@/assets/images/SVG/dot.svg';
+import BackIcon from '@/assets/images/SVG/Ads_section/Back_Return.svg';
+import ForwardIcon from '@/assets/images/SVG/Ads_section/Forward_Return.svg';
+
+const { width, height } = Dimensions.get('window');
 
 const FooterHeader = ({ icon, content }: {
   icon: React.ReactNode,
@@ -17,28 +20,28 @@ const FooterHeader = ({ icon, content }: {
             {icon}
           </View>
           <DotIcon style={{ marginLeft: 5 }} />
-          <Text style={{ fontFamily: 'Genos', fontSize: 20, color: '#333333', marginLeft: 15 }}>{content}</Text>
+          <Text style={styles.contentText}>{content}</Text>
           <DotIcon style={{ marginLeft: 15 }} />
         </View>
         <View style={styles.arrowGroup}>
           <TouchableOpacity>
             <View style={styles.arrowButton}>
-              <BackIcon />
+              <BackIcon width={width * 0.04} height={width * 0.04} />
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.arrowButton}>
-              <ForwardIcon />
+              <ForwardIcon width={width * 0.04} height={width * 0.04} />
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <Text style={{ fontFamily: 'Genos', fontSize: 20, }}>Done</Text>
+          <Text style={styles.buttonText}>Done</Text>
         </View>
       </View>
       <View style={styles.divider} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -46,8 +49,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   status: {
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: width * 0.05,
+    paddingVertical: height * 0.02,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -57,31 +60,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
+  contentText: {
+    fontFamily: 'Genos',
+    fontSize: width * 0.05,
+    color: '#333333',
+    marginLeft: width * 0.03,
+  },
   arrowGroup: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minWidth: 120,
+    minWidth: width * 0.25,
   },
   arrowButton: {
-    backgroundColor: 'whtie',
+    backgroundColor: 'white',
     borderRadius: 10,
-    padding: 8,
+    padding: width * 0.02,
     borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.05)',
   },
   button: {
     backgroundColor: 'white',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 10,
+    paddingHorizontal: width * 0.04,
+    paddingVertical: height * 0.01,
+    borderRadius: width * 0.03,
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.15)',
+  },
+  buttonText: {
+    fontFamily: 'Genos',
+    fontSize: width * 0.05,
   },
   divider: {
     width: '100%',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
   },
-})
+});
 
 export default FooterHeader;

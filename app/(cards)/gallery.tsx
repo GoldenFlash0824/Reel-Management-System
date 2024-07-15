@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, ImageBackground, Dimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
