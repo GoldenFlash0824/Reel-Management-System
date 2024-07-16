@@ -2,15 +2,10 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import FlameIcon from '@/assets/images/flame.svg';
 
-const Element = ({ status, style }: { status: string, style?: any }) => {
+const Element = ({ style }: { style?: any }) => {
   return (
     <TouchableOpacity onPress={() => {
-      router.push({
-        pathname: "/(cards)/edit",
-        params: {
-          status: status
-        }
-      })
+      router.push("/(cards)/edit");
     }}>
       <View style={[styles.card, style]}>
         <Image source={require('@/assets/images/PNG/gallery_card.png')} style={styles.image} />

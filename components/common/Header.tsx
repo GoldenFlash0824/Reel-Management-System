@@ -1,4 +1,6 @@
-import { StyleSheet, View, Platform, StatusBar } from "react-native";
+import { StyleSheet, View, Platform, StatusBar, Dimensions } from "react-native";
+
+const { height } = Dimensions.get('window');
 
 const Header = ({ children, style }: { children: React.ReactNode, style?: object }) => {
   return (
@@ -11,7 +13,7 @@ const Header = ({ children, style }: { children: React.ReactNode, style?: object
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 50,
+    height: height * 0.1,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
