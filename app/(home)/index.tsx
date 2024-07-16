@@ -63,19 +63,16 @@ export default function Index() {
                   id: 0,
                   icon: <StoryIcon width={width * 0.15} height={width * 0.15} fill="white" />,
                   title: "Create Stories",
-                  subtitle: "Share your moments"
                 },
                 {
                   id: 1,
                   icon: <ReelIcon width={width * 0.15} height={width * 0.15} fill="white" />,
                   title: "Create Reels",
-                  subtitle: "Capture short videos"
                 },
                 {
                   id: 2,
                   icon: pressed === 2 ? <WhiteAdsIcon width={width * 0.15} height={width * 0.15} fill="white" /> : <AdsIcon width={width * 0.15} height={width * 0.15} fill="white" />,
                   title: "Create Ads",
-                  subtitle: "Reach your audience"
                 }
               ].map((card, index) => (
                 <TouchableOpacity
@@ -102,7 +99,6 @@ export default function Index() {
                   </View>
                   <Text style={[styles.cardText, { color: pressed === card.id ? 'white' : '#1C274C' }]}>Let's {card.id === 0 ? "create" : card.id === 1 ? "make" : "promote"}</Text>
                   <Text style={[styles.cardTitle, { color: pressed === card.id ? 'white' : '#1C274C' }]}>{card.title}</Text>
-                  <Text style={[styles.cardSubtitle, { color: pressed === card.id ? 'white' : '#1C274C' }]}>{card.subtitle}</Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -167,6 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: height * 0.05
   },
   status: {
     flexDirection: 'row',
@@ -225,11 +222,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Genos',
     paddingTop: height * 0.006
   },
-  cardSubtitle: {
-    fontSize: width * 0.025,
-    fontFamily: 'Genos',
-    paddingTop: height * 0.008,
-  },
   adsOptionsText: {
     fontSize: width * 0.06,
     fontFamily: 'Genos',
@@ -248,18 +240,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.01,
-    width: '23%',
+    width: '24.2%',
     marginBottom: height * 0.02,
     alignItems: 'center'
   },
   adsOptionTitle: {
-    fontSize: width * 0.03,
+    fontSize: width * 0.035,
     fontFamily: 'Genos',
     color: '#1C274C',
     marginTop: height * 0.005
   },
   adsOptionSubtitle: {
-    fontSize: width * 0.025,
+    fontSize: width * 0.03,
     fontFamily: 'Genos',
     color: '#1C274C'
   }

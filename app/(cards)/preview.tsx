@@ -1,30 +1,19 @@
-import { View, ImageBackground, StyleSheet, TouchableOpacity, Dimensions } from "react-native"
-import { router } from "expo-router";
+import { useState } from "react";
 
-import Header from '@/components/common/Header';
-import ArrowBackIcon from '@/assets/images/SVG/Stories_section/back-.svg';
-
-const { width } = Dimensions.get('window');
+import Step1 from "@/components/common/Preview/Step1";
+import Step2 from "@/components/common/Preview/Step2";
+import Step3 from "@/components/common/Preview/Step3";
+import Step4 from "@/components/common/Preview/Step4";
 
 export default function Preview() {
+  const [step, setStep] = useState<number>(1);
+
   return (
-    <View style={styles.container}>
-      <ImageBackground source={require('@/assets/images/PNG/home_bg.png')} style={styles.image}>
-        <Header>
-          <TouchableOpacity onPress={() => { router.push("/(cards)/edit") }}>
-            <ArrowBackIcon width={width * 0.08} height={width * 0.08} />
-          </TouchableOpacity>
-        </Header>
-      </ImageBackground>
-    </View>
+    <>
+      {step === 1 && <Step1 setStep={setStep} />}
+      {step === 2 && <Step2 setStep={setStep} />}
+      {step === 3 && <Step3 setStep={setStep} />}
+      {step === 4 && <Step4 setStep={setStep} />}
+    </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  image: {
-    flex: 1,
-  },
-})

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useLocalSearchParams } from 'expo-router';
 
+import { useContent } from '@/app/(cards)/_layout';
 import Element from '@/components/(cards)/element';
 import GalleryIcon from '@/assets/images/gallery_ico.svg';
 import ArrowRightIcon from '@/assets/images/arrow_right.svg';
@@ -12,6 +13,15 @@ export default function Index() {
   const { status } = useLocalSearchParams<{
     status: string;
   }>();
+
+  const { setStatus } = useContent();
+
+  useEffect(() => {
+    if (status) {
+      setStatus(parseInt(status));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
 
   const renderCategory = (title: string) => (
     <View style={styles.categoryContainer}>
@@ -27,7 +37,7 @@ export default function Index() {
       </View>
       <View style={styles.elementsContainer}>
         {Array(3).fill(0).map((_, index) => (
-          <Element key={index} status={status || ''} style={styles.element} />
+          <Element key={index} style={styles.element} />
         ))}
       </View>
     </View>

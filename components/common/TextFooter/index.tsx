@@ -11,7 +11,6 @@ import SpaceIcon from '@/assets/images/SVG/Ads_section/Space.svg';
 import LiningIcon from '@/assets/images/SVG/Ads_section/Lining.svg';
 import SizeIcon from '@/assets/images/SVG/Ads_section/Size.svg';
 import ColorIcon from '@/assets/images/SVG/Ads_section/Color.svg';
-import FontBody from './FontBody';
 import FooterBody from './FooterBody';
 
 const { width, height } = Dimensions.get('window');

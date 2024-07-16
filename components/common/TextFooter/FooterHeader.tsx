@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from "react-native";
 
+import { useContent } from '@/app/(cards)/_layout';
 import DotIcon from '@/assets/images/SVG/dot.svg';
 import BackIcon from '@/assets/images/SVG/Ads_section/Back_Return.svg';
 import ForwardIcon from '@/assets/images/SVG/Ads_section/Forward_Return.svg';
@@ -11,6 +12,8 @@ const FooterHeader = ({ icon, content }: {
   icon: React.ReactNode,
   content: string
 }) => {
+  const { setFooter } = useContent();
+
   return (
     <View style={styles.container}>
       <View style={styles.status}>
@@ -35,9 +38,11 @@ const FooterHeader = ({ icon, content }: {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Done</Text>
-        </View>
+        <TouchableOpacity onPress={() => { setFooter('effect') }}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Done</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.divider} />
     </View>
