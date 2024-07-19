@@ -6,7 +6,7 @@ import DotIcon from '@/assets/images/SVG/dot.svg';
 import BackIcon from '@/assets/images/SVG/Ads_section/Back_Return.svg';
 import ForwardIcon from '@/assets/images/SVG/Ads_section/Forward_Return.svg';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const FooterHeader = ({ icon, content }: {
   icon: React.ReactNode,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   status: {
     paddingHorizontal: width * 0.05,
-    paddingVertical: height * 0.02,
+    paddingVertical: width * 0.04,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -85,15 +85,17 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'white',
-    paddingHorizontal: width * 0.04,
-    paddingVertical: height * 0.01,
-    borderRadius: width * 0.03,
+    borderRadius: width * 0.02,
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.15)',
   },
   buttonText: {
     fontFamily: 'Genos',
     fontSize: width * 0.05,
+    paddingHorizontal: width * 0.04,
+    paddingVertical: width * 0.01,
+    textAlign: 'center',
+    lineHeight: width * 0.06,
   },
   divider: {
     width: '100%',

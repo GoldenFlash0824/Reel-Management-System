@@ -73,30 +73,30 @@ const Step3 = ({ setStep }: { setStep: React.Dispatch<SetStateAction<number>> })
         <ImageBackground source={require('@/assets/images/PNG/bg_gray.png')} style={styles.image}>
           <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.selection}>
-              <Text style={{ fontFamily: 'Genos', color: 'white', fontSize: width * 0.04 }}>Your Selections</Text>
+              <Text style={{ fontFamily: 'Genos', color: 'white', fontSize: width * 0.045 }}>Your Selections</Text>
               <View style={styles.selectionArea}>
-                <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.035 }}>Selected City</Text>
+                <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.045 }}>Selected City</Text>
                 <View style={{ flexDirection: "row", flexWrap: 'wrap', gap: width * 0.02, marginVertical: width * 0.03 }}>
                   {selectedCities?.map((selectedCity, index) => (
                     <View key={index} style={styles.selectedCityItem}>
                       {selectedCity?.icon}
-                      <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)' }}>{selectedCity?.name}</Text>
+                      <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.035 }}>{selectedCity?.name}</Text>
                     </View>
                   ))}
                 </View>
                 <View style={{ borderBottomColor: 'rgba(28, 39, 76, 0.1)', borderBottomWidth: 2, marginHorizontal: width * 0.03 }}></View>
-                <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.035, marginVertical: width * 0.025 }}>Total Users</Text>
+                <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.045, marginVertical: width * 0.025 }}>Total Users</Text>
                 <View style={styles.userArea}>
                   {users.map((user, index) => (
                     <View key={index} style={styles.userElement}>
                       {user.icon}
-                      <Text style={{ fontFamily: 'Genos', color: '#7f7f7f', fontSize: width * 0.03 }}>{user.title}</Text>
-                      <Text style={{ fontFamily: 'Genos', color: '#bfbfbf', fontSize: width * 0.03 }}>{user.count}</Text>
+                      <Text style={{ fontFamily: 'Genos', color: '#7f7f7f', fontSize: width * 0.035 }}>{user.title}</Text>
+                      <Text style={{ fontFamily: 'Genos', color: '#bfbfbf', fontSize: width * 0.035 }}>{user.count}</Text>
                     </View>
                   ))}
                 </View>
               </View>
-              <Text style={{ fontFamily: 'Genos', color: 'white', fontSize: width * 0.04 }}>Select ur Plan</Text>
+              <Text style={{ fontFamily: 'Genos', color: 'white', fontSize: width * 0.045 }}>Select ur Plan</Text>
               <View style={{ marginTop: width * 0.03, gap: width * 0.03 }}>
                 {plans.map((plan, index) => (
                   <TouchableOpacity key={index} onPress={() => { setSelectedPlanIndex(index) }}>
@@ -104,16 +104,18 @@ const Step3 = ({ setStep }: { setStep: React.Dispatch<SetStateAction<number>> })
                       <View style={{ flexDirection: "row", justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: width * 0.02 }}>
                           {plan.icon}
-                          <Text style={{ fontFamily: 'Genos', fontSize: width * 0.04 }}>{plan.title}</Text>
+                          <Text style={{ fontFamily: 'Genos', fontSize: width * 0.045 }}>{plan.title}</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: width * 0.02 }}>
-                          <Text style={{ fontFamily: 'Genos', fontSize: width * 0.04, color: 'red' }}>{plan.price} €</Text>
-                          {index === selectedPlanIndex ? <CheckedIcon style={{ width: width * 0.03 }} /> : <UncheckedIcon style={{ width: width * 0.03 }} />}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: width * 0.03 }}>
+                          <Text style={{ fontFamily: 'Genos', fontSize: width * 0.05, color: 'red' }}>{plan.price} €</Text>
+                          {index === selectedPlanIndex ? <CheckedIcon width={width * 0.05} height={width * 0.05} /> : <UncheckedIcon width={width * 0.05} height={width * 0.05} />}
                         </View>
                       </View>
-                      <View style={{ flexDirection: "row", gap: width * 0.01, paddingHorizontal: width * 0.06 }}>
-                        <TickIcon />
-                        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.03 }}>{plan.deadline}</Text>
+                      <View style={{ flexDirection: "row", gap: width * 0.01, paddingHorizontal: width * 0.02, alignItems: 'flex-start' }}>
+                        <View style={{ alignItems: 'flex-start' }}>
+                          <TickIcon width={width * 0.055} height={width * 0.055} />
+                        </View>
+                        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.04 }}>{plan.deadline}</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
@@ -123,10 +125,10 @@ const Step3 = ({ setStep }: { setStep: React.Dispatch<SetStateAction<number>> })
             <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
               <TouchableOpacity onPress={() => { setAccepted(!accepted) }}>
                 <View style={{ backgroundColor: '#f5f4f3', marginTop: width * 0.05, paddingHorizontal: width * 0.03, paddingVertical: width * 0.02, borderRadius: width * 0.02 }}>
-                  <View style={{ flexDirection: 'row' }}>
-                    {accepted ? <AcceptedIcon width={width * 0.04} height={width * 0.04} /> : <UnAcceptedIcon width={width * 0.04} height={width * 0.04} />}
-                    <Text style={{ fontFamily: "Genos", color: 'rgba(0, 0, 0, 0.6)', marginLeft: width * 0.02, fontSize: width * 0.03 }}>Accept policy and</Text>
-                    <Text style={{ fontFamily: "Genos", color: '#2B99FF', fontSize: width * 0.03 }}> terms</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    {accepted ? <AcceptedIcon width={width * 0.05} height={width * 0.05} /> : <UnAcceptedIcon width={width * 0.05} height={width * 0.05} />}
+                    <Text style={{ fontFamily: "Genos", color: 'rgba(0, 0, 0, 0.6)', marginLeft: width * 0.02, fontSize: width * 0.04 }}>Accept policy and</Text>
+                    <Text style={{ fontFamily: "Genos", color: '#2B99FF', fontSize: width * 0.04 }}> terms</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -137,8 +139,8 @@ const Step3 = ({ setStep }: { setStep: React.Dispatch<SetStateAction<number>> })
                   setStep(4)
                 }
               }}>
-                <View style={{ backgroundColor: 'white', paddingHorizontal: width * 0.03, paddingVertical: width * 0.02, marginTop: width * 0.05, borderRadius: width * 0.05 }}>
-                  <Text style={{ fontFamily: 'Genos', fontSize: width * 0.035 }}>Publish now</Text>
+                <View style={{ backgroundColor: 'white', paddingHorizontal: width * 0.035, paddingVertical: width * 0.02, marginTop: width * 0.05, borderRadius: width * 0.05 }}>
+                  <Text style={{ fontFamily: 'Genos', fontSize: width * 0.05 }}>Publish now</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -184,7 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: width * 0.03,
-    gap: width * 0.03
+    gap: width * 0.02
   },
   userElement: {
     flexDirection: 'column',

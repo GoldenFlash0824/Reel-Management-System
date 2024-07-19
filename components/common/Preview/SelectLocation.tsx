@@ -33,19 +33,19 @@ const SelectLocation = () => {
         <View style={styles.selectArea}>
           <View style={countryStyle}>
             <TouchableOpacity onPress={handleSelect(0)} style={styles.iconTextContainer}>
-              <CountryIcon width={width * 0.06} height={width * 0.06} />
+              <CountryIcon width={width * 0.07} height={width * 0.07} />
               <View style={styles.textarea}>
-                <Text style={styles.mainText}>Select Country</Text>
-                <Text style={styles.subText}>Share in whole Country</Text>
+                <Text style={styles.mainText} numberOfLines={1} ellipsizeMode="tail">Select Country</Text>
+                <Text style={styles.subText} numberOfLines={1} ellipsizeMode="tail">Share in whole Country</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={cityStyle}>
             <TouchableOpacity onPress={handleSelect(1)} style={styles.iconTextContainer}>
-              <CityIcon width={width * 0.06} height={width * 0.06} />
+              <CityIcon width={width * 0.07} height={width * 0.07} />
               <View style={styles.textarea}>
-                <Text style={styles.mainText}>Select City's</Text>
-                <Text style={styles.subText}>Share your Single City</Text>
+                <Text style={styles.mainText} numberOfLines={1} ellipsizeMode="tail">Select City's</Text>
+                <Text style={styles.subText} numberOfLines={1} ellipsizeMode="tail">Share your Single City</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -53,12 +53,12 @@ const SelectLocation = () => {
         <View style={styles.infoArea}>
           <InfoIcon width={width * 0.09} height={width * 0.09} />
           <View style={styles.infoTextArea}>
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: width * 0.02 }}>
+            <View style={styles.infoHeader}>
               <DotIcon />
-              <Text style={{ fontFamily: 'Genos', color: '#64748B', fontSize: width * 0.04 }}>Information</Text>
+              <Text style={styles.infoHeaderText}>Information</Text>
               <DotIcon />
             </View>
-            <Text style={{ fontFamily: 'Genos', color: '#FF3257', fontSize: width * 0.03 }}>No Backup found on this Account</Text>
+            <Text style={styles.infoText} numberOfLines={1} ellipsizeMode="tail">No Backup found on this Account</Text>
           </View>
         </View>
         <View>
@@ -88,9 +88,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.07)',
     borderRadius: width * 0.015,
     padding: width * 0.018,
-    gap: width * 0.04,
+    gap: width * 0.02,
     flexDirection: 'row',
-    marginHorizontal: width * 0.03
   },
   selectElement: {
     flex: 1,
@@ -112,23 +111,23 @@ const styles = StyleSheet.create({
   },
   textarea: {
     flexDirection: 'column',
-    gap: width * 0.01
+    gap: width * 0.01,
+    flex: 1,
   },
   mainText: {
     fontFamily: 'Genos',
     color: 'rgba(28, 39, 76, 0.6)',
-    fontSize: width * 0.03
+    fontSize: width * 0.04
   },
   subText: {
     fontFamily: 'Genos',
-    color: 'rgba(28, 39, 76, 0.6)',
-    fontSize: width * 0.02
+    color: 'rgba(28, 39, 76, 0.4)',
+    fontSize: width * 0.03
   },
   infoArea: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: width * 0.04,
-    marginTop: width * 0.02,
+    marginTop: width * 0.03,
     backgroundColor: '#F2F2F2',
     borderRadius: width * 0.03,
     paddingHorizontal: width * 0.035,
@@ -141,6 +140,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: width * 0.01
   },
+  infoHeader: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: width * 0.02,
+  },
+  infoHeaderText: {
+    fontFamily: 'Genos',
+    color: '#64748B',
+    fontSize: width * 0.05,
+  },
+  infoText: {
+    fontFamily: 'Genos',
+    color: '#FF3257',
+    fontSize: width * 0.035,
+  }
 });
 
 export default SelectLocation;

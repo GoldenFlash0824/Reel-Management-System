@@ -8,10 +8,10 @@ import CloseIcon from '@/assets/images/SVG/Ads_section/close.svg';
 const { width } = Dimensions.get('window');
 
 const initialCities = [
-  { name: 'City Name 1', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.04} height={width * 0.04} />, status: false },
-  { name: 'City Name 2', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.04} height={width * 0.04} />, status: false },
-  { name: 'City Name 3', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.04} height={width * 0.04} />, status: false },
-  { name: 'City Name 4', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.04} height={width * 0.04} />, status: false },
+  { name: 'City Name 1', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.05} height={width * 0.05} />, status: false },
+  { name: 'City Name 2', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.05} height={width * 0.05} />, status: false },
+  { name: 'City Name 3', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.05} height={width * 0.05} />, status: false },
+  { name: 'City Name 4', total: 'Total Users 10k', icon: <GermanyIcon width={width * 0.05} height={width * 0.05} />, status: false },
 ];
 
 const Cities = () => {
@@ -62,7 +62,7 @@ const Cities = () => {
               {selectedCities}
             </ScrollView>
             <TouchableOpacity onPress={handleRemoveLastCity} style={styles.closeButton}>
-              <CloseIcon width={width * 0.04} height={width * 0.04} />
+              <CloseIcon width={width * 0.06} height={width * 0.06} />
             </TouchableOpacity>
           </>
         ) : (
@@ -72,7 +72,9 @@ const Cities = () => {
       <View style={styles.cities}>
         {cities.map((city, index) => (
           <View key={index} style={[styles.cityItem, index !== cities.length - 1 && styles.borderBottom]}>
-            {city.icon}
+            <View style={styles.iconContainer}>
+              {city.icon}
+            </View>
             <View style={styles.cityTextArea}>
               <Text style={styles.cityName}>{city.name}</Text>
               <Text style={styles.cityTotal}>{city.total}</Text>
@@ -91,12 +93,13 @@ const Cities = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: width * 0.06,
+    paddingHorizontal: width * 0.01,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.03,
+    paddingVertical: width * 0.04,
+    marginHorizontal: width * 0.01,
   },
   title: {
     fontFamily: 'Genos',
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontFamily: 'Genos',
-    fontSize: width * 0.03,
+    fontSize: width * 0.04,
     color: 'rgba(28, 39, 76, 0.6)',
   },
   selectedCitiesBar: {
@@ -126,11 +129,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(28, 39, 76, 0.1)',
     borderRadius: width * 0.02,
     paddingHorizontal: width * 0.02,
-    paddingVertical: width * 0.01,
+    paddingVertical: width * 0.015,
     marginRight: width * 0.02,
   },
   selectedCityText: {
-    fontSize: width * 0.03,
+    fontSize: width * 0.035,
     color: 'rgba(28, 39, 76, 0.6)',
     fontFamily: 'Genos',
   },
@@ -140,8 +143,8 @@ const styles = StyleSheet.create({
     marginLeft: width * 0.03,
   },
   placeholderText: {
-    fontSize: width * 0.03,
-    color: 'rgba(28, 39, 76, 0.6)',
+    fontSize: width * 0.04,
+    color: 'rgba(28, 39, 76, 0.3)',
     fontFamily: 'Genos',
   },
   cities: {
@@ -149,9 +152,13 @@ const styles = StyleSheet.create({
   },
   cityItem: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.015,
+    paddingVertical: width * 0.02,
+  },
+  iconContainer: {
+    justifyContent: 'flex-start',
+    marginTop: width * 0.01,
   },
   borderBottom: {
     borderBottomColor: 'rgba(28, 39, 76, 0.1)',
@@ -159,18 +166,19 @@ const styles = StyleSheet.create({
   },
   cityTextArea: {
     flexDirection: 'column',
-    marginLeft: width * 0.025,
+    marginLeft: width * 0.03,
+    gap: width * 0.01,
     flex: 1,
   },
   cityName: {
     fontFamily: 'Genos',
     color: 'rgba(28, 39, 76, 0.6)',
-    fontSize: width * 0.03,
+    fontSize: width * 0.04,
   },
   cityTotal: {
     fontFamily: 'Genos',
     color: 'rgba(28, 39, 76, 0.4)',
-    fontSize: width * 0.025,
+    fontSize: width * 0.035,
   },
 });
 

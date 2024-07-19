@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   usernameText: {
     marginTop: width * 0.08,
     fontFamily: 'Genos',
-    fontSize: width * 0.06,
+    fontSize: width * 0.075,
     textAlign: 'center'
   },
   messageContainer: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   messageText: {
     fontFamily: 'Genos',
-    fontSize: width * 0.03,
+    fontSize: width * 0.04,
     color: '#64748B',
     textAlign: 'center'
   },

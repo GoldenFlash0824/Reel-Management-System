@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-import DotIcon from '@/assets/images/SVG/dot.svg';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { router } from "expo-router";
+import DotIcon from '@/assets/images/SVG/dot.svg';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const FooterHeader = ({ statusIcon, content }:
   {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   status: {
     paddingHorizontal: width * 0.05,
-    paddingVertical: height * 0.02,
+    paddingVertical: width * 0.04,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -77,15 +77,19 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'white',
-    paddingHorizontal: width * 0.04,
-    paddingVertical: height * 0.01,
-    borderRadius: width * 0.03,
+    borderRadius: width * 0.02,
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.15)',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonText: {
+    paddingHorizontal: width * 0.04,
+    paddingVertical: width * 0.01,
     fontFamily: 'Genos',
     fontSize: width * 0.05,
+    textAlign: 'center',
+    lineHeight: width * 0.06,
   }
 });
 
