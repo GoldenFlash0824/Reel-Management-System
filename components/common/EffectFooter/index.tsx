@@ -81,7 +81,7 @@ const Footer = ({ content, setContent, icon, setIcon, statusIcon, setStatusIcon 
     <View style={[styles.container, content === '' ? styles.containerEmpty : styles.containerNotEmpty]}>
       {content !== '' && <FooterHeader content={content} statusIcon={statusIcon} />}
       <FooterBody content={content} />
-      <View style={styles.scrollParent}>
+      <View style={[styles.scrollParent, content === 'Text' && styles.textScroll]}>
         <ScrollView horizontal contentContainerStyle={styles.scrollViewContent}>
           {footers?.map((footer, index) => (
             <FooterSelector key={index} icon={footer?.icon} itemContent={footer?.content} selectedSelector={selectedSelector} handleClick={() => { handleClick(footer) }} />
@@ -112,6 +112,9 @@ const styles = StyleSheet.create({
   },
   scrollParent: {
     width: '100%',
+  },
+  textScroll: {
+    paddingTop: height * 0.02,
   },
   scrollViewContent: {
     flexDirection: 'row',

@@ -10,25 +10,25 @@ const initialCountries = [
   {
     name: 'Germany',
     total: 'Total Users 10k',
-    icon: <GermanyIcon width={width * 0.04} height={width * 0.04} />,
+    icon: <GermanyIcon width={width * 0.05} height={width * 0.05} />,
     status: false
   },
   {
     name: 'Kurdistan',
     total: 'Total Users 10M, 999k',
-    icon: <KurdistanIcon width={width * 0.04} height={width * 0.04} />,
+    icon: <KurdistanIcon width={width * 0.05} height={width * 0.05} />,
     status: false
   },
   {
     name: 'Kurdistan',
     total: 'Total Users 10M, 999k',
-    icon: <KurdistanIcon width={width * 0.04} height={width * 0.04} />,
+    icon: <KurdistanIcon width={width * 0.05} height={width * 0.05} />,
     status: false
   },
   {
     name: 'Kurdistan',
     total: 'Total Users 10M, 999k',
-    icon: <KurdistanIcon width={width * 0.04} height={width * 0.04} />,
+    icon: <KurdistanIcon width={width * 0.05} height={width * 0.05} />,
     status: false
   }
 ];
@@ -48,16 +48,18 @@ const Countries = () => {
   return (
     <View>
       <View style={styles.notifyTextArea}>
-        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.03, color: 'rgba(28, 39, 76, 0.6)' }}>Select Country</Text>
-        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.03, color: 'rgba(28, 39, 76, 0.6)' }}>Max. 3 Countrys</Text>
+        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.04, color: 'rgba(28, 39, 76, 0.6)' }}>Select Country</Text>
+        <Text style={{ fontFamily: 'Genos', fontSize: width * 0.04, color: 'rgba(28, 39, 76, 0.6)' }}>Max. 3 Countrys</Text>
       </View>
       <View style={styles.countries}>
         {countries.map((country, index) => (
           <View key={index} style={[styles.countryItem, index !== countries.length - 1 && styles.borderBottom]}>
-            {country.icon}
+            <View style={styles.iconContainer}>
+              {country.icon}
+            </View>
             <View style={styles.countryTextArea}>
-              <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.03 }}>{country.name}</Text>
-              <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.4)', fontSize: width * 0.025 }}>{country.total}</Text>
+              <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.6)', fontSize: width * 0.04 }}>{country.name}</Text>
+              <Text style={{ fontFamily: 'Genos', color: 'rgba(28, 39, 76, 0.4)', fontSize: width * 0.035 }}>{country.total}</Text>
             </View>
             <Switch
               value={country.status}
@@ -75,28 +77,32 @@ const styles = StyleSheet.create({
   notifyTextArea: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: width * 0.06,
-    paddingVertical: width * 0.03
+    marginHorizontal: width * 0.02,
+    paddingVertical: width * 0.04
   },
   countries: {
     flexDirection: 'column',
-    marginHorizontal: width * 0.06,
-    marginTop: width * 0.04
+    marginHorizontal: width * 0.01,
+    marginTop: width * 0.01
   },
   countryItem: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    paddingVertical: width * 0.015,
+    paddingVertical: width * 0.02,
   },
   borderBottom: {
     borderBottomColor: 'rgba(28, 39, 76, 0.1)',
     borderBottomWidth: 1,
   },
+  iconContainer: {
+    justifyContent: 'flex-start',
+    marginTop: width * 0.01,
+  },
   countryTextArea: {
     flexDirection: 'column',
     gap: width * 0.01,
-    marginLeft: width * 0.025,
+    marginLeft: width * 0.03,
     flex: 1
   }
 })
